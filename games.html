@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games | To my Candy</title>
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/sections.css">
+    <link rel="stylesheet" href="styles/games.css">
+</head>
+<body>
+    <div id="white-overlay"></div>
+
+    <div class="section-shell games-shell app-shell fade-in">
+        <header class="top-bar">
+            <div class="status-left">
+                <img src="https://www.svgrepo.com/show/497407/profile-circle.svg" class="icon-sm" alt="user">
+            </div>
+            <div class="status-center">
+                <div class="pink-battery"></div>
+            </div>
+            <div class="status-right">
+                <span id="date-display">Wed, February 11, 2026</span>
+                <img src="https://www.svgrepo.com/show/506282/menu-hamburger.svg" class="icon-sm" alt="menu">
+            </div>
+        </header>
+
+        <main class="section-main">
+            <h1 class="section-title">Games</h1>
+            <section class="section-card game-card">
+                <div id="game-container">
+                    <canvas id="gameCanvas"></canvas>
+
+                    <div id="ui-layer">
+                        <div id="score-board">
+                            <span>⭐ Star Meter:</span>
+                            <div class="progress-bar">
+                                <div id="love-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="start-screen" class="screen active">
+                        <h2>Catch the Stars</h2>
+                        <p>Catch enough stars for something muehehe</p>
+                        <button id="start-btn" class="btn">Start Game</button>
+                    </div>
+
+                    <div id="proposal-screen" class="screen hidden">
+                        <div class="proposal-content">
+                            <h2>Will you keep being my baby?</h2>
+                            <p class="sub-text">You caught every star in my sky 💜</p>
+                            <div class="buttons">
+                                <button id="yes-btn" class="btn yes-btn">YES!</button>
+                                <button id="no-btn" class="btn no-btn">No</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="no-screen" class="screen hidden">
+                        <img src="imgs/cat-sad.gif" alt="No reaction gif" class="no-gif">
+                        <button id="back-btn" class="btn no-btn">Go Back</button>
+                    </div>
+
+                    <div id="celebration-screen" class="screen hidden">
+                        <h2>I love you so, so much, Candy ✨</h2>
+                        <p>"You are my favorite miracly that came true."</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="taskbar">
+            <div class="tb-left">
+                <a href="index.html"><img src="https://www.svgrepo.com/show/362031/windows.svg" class="icon-tb" alt="start"></a>
+                <a href="menu.html"><img src="https://www.svgrepo.com/show/530582/folder-open.svg" class="icon-tb" alt="menu"></a>
+                <a href="photos.html"><img src="https://www.svgrepo.com/show/445294/image.svg" class="icon-tb" alt="photos"></a>
+                <a href="games.html"><img src="https://www.svgrepo.com/show/406910/gamepad.svg" class="icon-tb" alt="games"></a>
+            </div>
+            <div class="tb-center">
+                <img src="https://www.svgrepo.com/show/506118/arrow-up.svg" class="icon-xs" alt="up">
+                <img src="https://www.svgrepo.com/show/532185/chat-round-content.svg" class="icon-xs" alt="chat">
+                <img src="https://www.svgrepo.com/show/497407/profile-circle.svg" class="icon-xs" alt="profile">
+                <span id="tb-clock">12:00 AM</span>
+            </div>
+            <div class="tb-right">
+                <a href="index.html"><img src="https://www.svgrepo.com/show/512351/home-1393.svg" class="icon-tb" alt="home"></a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/index.js"></script>
+    <script src="js/games.js"></script>
+</body>
+</html>

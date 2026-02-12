@@ -1,0 +1,116 @@
+.menu-shell {
+    --app-bg-image: url('https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1400&q=80');
+    --app-bg-overlay: linear-gradient(135deg, rgba(36, 53, 120, 0.35), rgba(157, 101, 233, 0.35), rgba(241, 118, 172, 0.3));
+}
+
+.menu-main {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-card {
+    width: min(880px, 100%);
+    height: 100%;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(2px);
+    border: 2px solid rgba(255, 255, 255, 0.26);
+    overflow: hidden;
+}
+
+.menu-overlay {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 28px;
+    display: flex;
+    align-items: center;
+}
+
+.side-links {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    z-index: 2;
+}
+
+.menu-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #fff2f9;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    font-size: clamp(1.2rem, 3.6vw, 2rem);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-link img {
+    width: 42px;
+    height: 42px;
+    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.25));
+}
+
+.menu-link:hover {
+    transform: translateX(6px);
+    opacity: 0.95;
+}
+
+.photos-link img {
+    filter: hue-rotate(22deg) saturate(1.2) drop-shadow(0 3px 4px rgba(0, 0, 0, 0.25));
+}
+
+.games-link img {
+    filter: hue-rotate(270deg) saturate(1.3) drop-shadow(0 3px 4px rgba(0, 0, 0, 0.25));
+}
+
+.avatar-wrap {
+    margin-left: auto;
+    width: min(42%, 300px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.28);
+    animation: profilePulse 4s ease-in-out infinite;
+}
+
+.avatar-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logout-btn {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    text-decoration: none;
+    color: #ffffff;
+    background: linear-gradient(120deg, rgba(241, 118, 172, 0.94), rgba(157, 101, 233, 0.94), rgba(77, 113, 199, 0.94));
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    box-shadow: 0 8px 18px rgba(35, 65, 118, 0.35);
+    transition: transform 0.2s ease;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 760px) {
+    .menu-overlay {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .avatar-wrap {
+        margin-left: 0;
+        width: min(75%, 260px);
+    }
+}
