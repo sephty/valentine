@@ -13,51 +13,57 @@
     <div class="section-shell app-shell fade-in">
         <header class="top-bar">
             <div class="status-left">
-                <img src="https://www.svgrepo.com/show/497407/profile-circle.svg" class="icon-sm" alt="user">
+                <img src="imgs/profile-circle-svgrepo-com.svg" class="icon-sm" alt="user">
             </div>
             <div class="status-center">
                 <div class="pink-battery"></div>
             </div>
             <div class="status-right">
                 <span id="date-display">Wed, February 11, 2026</span>
-                <img src="https://www.svgrepo.com/show/506282/menu-hamburger.svg" class="icon-sm" alt="menu">
+                <img src="imgs/menu-hamburger-svgrepo-com.svg" class="icon-sm" alt="menu">
             </div>
         </header>
 
         <main class="section-main">
-            <h1 class="section-title">Photos</h1>
+            <div class="photos-head">
+                <h1 class="section-title">Photos</h1>
+                <a href="menu.html" class="photos-back-btn">← Back</a>
+            </div>
             <section class="section-card">
                 <div class="collage-table">
-                    <div class="collage-photo p1">Photo 1</div>
-                    <div class="collage-photo p2">Photo 2</div>
-                    <div class="collage-photo p3">Photo 3</div>
-                    <div class="collage-photo p4">Photo 4</div>
-                    <div class="collage-photo p5">Photo 5</div>
-                    <div class="collage-photo p6">Photo 6</div>
-                    <div class="collage-photo p7">Photo 7</div>
+                    <button class="collage-photo p1 photo-tile" data-src="imgs/aquarium.png" style="--photo-image:url('imgs/aquarium.png')"><span>Aquarium</span></button>
+                    <button class="collage-photo p2 photo-tile" data-src="imgs/nightwatching.jpg" style="--photo-image:url('imgs/nightwatching.jpg')"><span>Nightwatching</span></button>
+                    <button class="collage-photo p3 photo-tile" data-src="imgs/one-thingy.jpg" style="--photo-image:url('imgs/one-thingy.jpg')"><span>One thingy</span></button>
+                    <button class="collage-photo p4 photo-tile" data-src="imgs/cute_drawing_shedid.jpg" style="--photo-image:url('imgs/cute_drawing_shedid.jpg')"><span>Cute drawing</span></button>
+                    <button class="collage-photo p5 photo-tile" data-src="imgs/water.jpg" style="--photo-image:url('imgs/water.jpg')"><span>Water</span></button>
+                    <button class="collage-photo p6 photo-tile" data-src="imgs/love-language.gif" style="--photo-image:url('imgs/love-language.gif')"><span>Love language</span></button>
                 </div>
             </section>
         </main>
 
+        <div id="photo-overlay" class="photo-overlay" hidden>
+            <div id="picked-photo-host"></div>
+        </div>
+
         <footer class="taskbar">
             <div class="tb-left">
-                <a href="index.html"><img src="https://www.svgrepo.com/show/362031/windows.svg" class="icon-tb" alt="start"></a>
-                <a href="menu.html"><img src="https://www.svgrepo.com/show/530582/folder-open.svg" class="icon-tb" alt="menu"></a>
-                <a href="photos.html"><img src="https://www.svgrepo.com/show/445294/image.svg" class="icon-tb" alt="photos"></a>
-                <a href="games.html"><img src="https://www.svgrepo.com/show/406910/gamepad.svg" class="icon-tb" alt="games"></a>
+                <a href="index.html"><img src="imgs/windows-svgrepo-com.svg" class="icon-tb" alt="start"></a>
+                <a href="menu.html"><img src="imgs/folder-open-svgrepo-com.svg" class="icon-tb" alt="menu"></a>
+                <a href="photos.html"><img src="imgs/image-square-svgrepo-com.svg" class="icon-tb" alt="photos"></a>
+                <a href="games.html"><img src="imgs/gamepad-old-svgrepo-com.svg" class="icon-tb" alt="games"></a>
             </div>
             <div class="tb-center">
-                <img src="https://www.svgrepo.com/show/506118/arrow-up.svg" class="icon-xs" alt="up">
-                <img src="https://www.svgrepo.com/show/532185/chat-round-content.svg" class="icon-xs" alt="chat">
-                <img src="https://www.svgrepo.com/show/497407/profile-circle.svg" class="icon-xs" alt="profile">
+                <img src="imgs/arrow-up-from-line-svgrepo-com.svg" class="icon-xs" alt="up">
+                <img src="imgs/chat-round-svgrepo-com.svg" class="icon-xs" alt="chat">
+                <img src="imgs/profile-circle-svgrepo-com.svg" class="icon-xs" alt="profile">
                 <span id="tb-clock">12:00 AM</span>
             </div>
             <div class="tb-right">
-                <a href="index.html"><img src="https://www.svgrepo.com/show/512351/home-1393.svg" class="icon-tb" alt="home"></a>
+                <a href="index.html"><img src="imgs/home-10-svgrepo-com.svg" class="icon-tb" alt="home"></a>
             </div>
         </footer>
     </div>
 
-    <script src="js/index.js"></script>
+    <script src="js/photos.js"></script>
 </body>
 </html>

@@ -46,17 +46,21 @@ function createRandomHearts() {
         heart.className = 'floating-heart';
 
         const size = Math.floor(Math.random() * 22) + 20; // 20 - 42
-        const top = Math.floor(Math.random() * 88) + 2;
         const left = Math.floor(Math.random() * 92) + 2;
         const rot = Math.floor(Math.random() * 70) - 35;
         const opacity = (Math.random() * 0.35 + 0.25).toFixed(2);
+        const drift = Math.floor(Math.random() * 46) - 23;
+        const duration = (Math.random() * 5 + 8).toFixed(2);
+        const delay = (Math.random() * 6).toFixed(2);
 
         heart.style.width = `${size}px`;
         heart.style.height = `${size}px`;
-        heart.style.top = `${top}%`;
         heart.style.left = `${left}%`;
-        heart.style.transform = `rotate(${rot}deg)`;
-        heart.style.opacity = opacity;
+        heart.style.setProperty('--heart-rot', `${rot}deg`);
+        heart.style.setProperty('--heart-opacity', opacity);
+        heart.style.setProperty('--heart-drift', `${drift}px`);
+        heart.style.animationDuration = `${duration}s`;
+        heart.style.animationDelay = `-${delay}s`;
 
         heartsLayer.appendChild(heart);
     }

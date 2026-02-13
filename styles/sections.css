@@ -44,6 +44,7 @@
     border-radius: 14px;
     background: linear-gradient(140deg, rgba(199, 147, 106, 0.22), rgba(159, 116, 86, 0.28));
     overflow: hidden;
+    isolation: isolate;
 }
 
 .collage-photo {
@@ -63,6 +64,7 @@
     user-select: none;
     --rot: 0deg;
     animation: tileFloat 4s ease-in-out infinite;
+    transition: box-shadow 180ms ease;
 }
 
 .p1 { left: 5%; top: 12%; --rot: -9deg; z-index: 2; }
@@ -79,4 +81,357 @@
 @keyframes tileFloat {
     0%, 100% { transform: translateY(0) rotate(var(--rot)); }
     50% { transform: translateY(-4px) rotate(var(--rot)); }
+}
+
+.photos-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.photos-back-btn {
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(120deg, #f176ac, #9d65e9);
+    border-radius: 999px;
+    padding: 9px 14px;
+    font-size: 0.9rem;
+    box-shadow: 0 6px 14px rgba(82, 63, 145, 0.2);
+}
+
+.photo-tile {
+    cursor: pointer;
+    background-color: #fff;
+    background-image: var(--photo-image);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 8px solid #f8f8ff;
+    overflow: hidden;
+}
+
+.photo-tile span {
+    background: rgba(255, 255, 255, 0.88);
+    border-radius: 6px;
+    padding: 2px 7px;
+}
+
+.photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(31, 18, 43, 0.62);
+    z-index: 18;
+    display: grid;
+    place-items: center;
+    padding: 26px;
+}
+
+.photo-overlay[hidden] {
+    display: none !important;
+}
+
+#picked-photo-host {
+    width: min(520px, 88%);
+    display: grid;
+    place-items: center;
+}
+
+.picked-photo {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: min(300px, 68vw);
+    overflow: visible;
+    z-index: 20;
+    animation: none;
+    opacity: 0;
+    transform: rotate(var(--rot, 0deg)) scale(0.82);
+    transition: transform 260ms ease, opacity 220ms ease;
+}
+
+.picked-photo.is-open {
+    opacity: 1;
+    transform: rotate(var(--rot, 0deg)) scale(1.45);
+}
+
+.picked-photo.is-closing {
+    opacity: 0;
+    transform: rotate(var(--rot, 0deg)) scale(0.9);
+}
+
+.picked-photo-close {
+    position: absolute;
+    right: -11px;
+    top: -11px;
+    border: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(120deg, #f176ac, #9d65e9);
+    color: #fff;
+    font-size: 1.05rem;
+    cursor: pointer;
+    z-index: 30;
+}
+
+/* Diary */
+.diary-card {
+    position: relative;
+    overflow: hidden;
+}
+
+#flowers-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#flowers-layer .corner-flower {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    opacity: 0.72;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.14));
+}
+
+.diary-view {
+    position: relative;
+    z-index: 1;
+}
+
+.diary-view[hidden] {
+    display: none !important;
+}
+
+.diary-view.is-popping {
+    animation: popIn 260ms ease-out;
+}
+
+.diary-view.is-closing {
+    animation: popOut 200ms ease-in forwards;
+}
+
+.diary-list-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 10px;
+}
+
+.diary-helper {
+    color: #43568f;
+    font-size: 0.94rem;
+}
+
+.corner-add-btn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 2;
+    background: linear-gradient(120deg, #ff5ea8, #ff7fc8 45%, #b96dff);
+    box-shadow: 0 8px 18px rgba(242, 79, 156, 0.28);
+}
+
+.diary-btn {
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(125deg, #f176ac, #9d65e9);
+    color: #fff;
+    font-weight: 700;
+    padding: 9px 13px;
+    cursor: pointer;
+}
+
+.add-entry-form {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.add-entry-form input,
+.add-entry-form textarea {
+    border: 1px solid rgba(143, 99, 190, 0.35);
+    border-radius: 8px;
+    padding: 8px 10px;
+    resize: vertical;
+    font: inherit;
+    color: #34457f;
+}
+
+.entries-list {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+    margin-top: 56px;
+    padding-right: 118px;
+}
+
+.entry-item {
+    background: linear-gradient(120deg, rgba(241, 118, 172, 0.2), rgba(157, 101, 233, 0.2));
+    border-radius: 10px;
+    padding: 12px;
+    color: #32438a;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.entry-item:hover {
+    transform: translateY(-1px);
+}
+
+.entry-item strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.entry-item small {
+    opacity: 0.85;
+}
+
+.diary-detail-view {
+    position: absolute;
+    inset: 22px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 6px solid #ff87bf;
+    box-shadow: 0 14px 30px rgba(99, 37, 88, 0.3);
+    background: linear-gradient(180deg, rgba(255, 230, 242, 0.97), rgba(255, 215, 236, 0.96));
+}
+
+.add-entry-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(520px, calc(100% - 44px));
+    transform: translate(-50%, -50%);
+    border-radius: 18px;
+    overflow: hidden;
+    border: 6px solid #ff87bf;
+    box-shadow: 0 14px 30px rgba(99, 37, 88, 0.3);
+    background: linear-gradient(180deg, rgba(255, 230, 242, 0.97), rgba(255, 215, 236, 0.96));
+}
+
+#diary-list-view.is-dimmed {
+    opacity: 0.35;
+    filter: blur(1.5px);
+    pointer-events: none;
+}
+
+.window-strip {
+    background: linear-gradient(90deg, #ff5ea8 0%, #f176ac 45%, #9d65e9 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 7px 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.window-close {
+    margin-left: auto;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.diary-paper {
+    background: linear-gradient(180deg, #ffdce9 0%, #ffe9f5 100%);
+    padding: 16px;
+    color: #5f3e71;
+    border-top: 2px solid rgba(241, 118, 172, 0.45);
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.diary-paper h2 {
+    margin-bottom: 12px;
+    color: #454868;
+}
+
+.detail-back-btn {
+    margin-bottom: 12px;
+    padding: 7px 12px;
+    font-size: 0.86rem;
+}
+
+.popup-form {
+    margin: 0;
+    border-radius: 0;
+    border: 0;
+    padding: 14px;
+    background: linear-gradient(180deg, #ffdce9 0%, #ffe9f5 100%);
+}
+
+.detail-body p {
+    margin-bottom: 12px;
+    line-height: 1.32;
+}
+
+.camera-photo-row {
+    display: flex;
+    gap: 12px;
+    margin: 8px 0 12px;
+    flex-wrap: wrap;
+}
+
+.camera-photo {
+    width: min(140px, 42%);
+    background: #fff;
+    border: 1px solid #d5d6e2;
+    border-radius: 6px;
+    box-shadow: 0 7px 14px rgba(55, 48, 79, 0.22);
+    padding: 6px 6px 10px;
+    transform: rotate(var(--tilt, 0deg));
+}
+
+.camera-photo img {
+    width: 100%;
+    height: 92px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+}
+
+.camera-photo span {
+    display: block;
+    margin-top: 6px;
+    text-align: center;
+    font-size: 0.73rem;
+    color: #5f5f6b;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes popOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(8px) scale(0.97);
+    }
 }

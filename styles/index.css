@@ -14,7 +14,29 @@
     width: 40px;
     height: 40px;
     filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.12));
-    opacity: 0.6;
+    opacity: 0;
+    bottom: -14%;
+    animation-name: heartRise;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
+@keyframes heartRise {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(var(--heart-rot, 0deg));
+    }
+    12% {
+        opacity: var(--heart-opacity, 0.55);
+    }
+    58% {
+        opacity: var(--heart-opacity, 0.55);
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(var(--heart-drift, 0px), -115vh, 0) rotate(calc(var(--heart-rot, 0deg) + 20deg));
+    }
 }
 
 .content {

@@ -68,6 +68,7 @@ body {
     border: 10px solid white;
     border-radius: 16px;
     overflow: hidden;
+    isolation: isolate;
     box-shadow: var(--shadow-lg);
     display: flex;
     flex-direction: column;
@@ -75,12 +76,17 @@ body {
     background: var(--app-bg-image) center / cover no-repeat, var(--app-bg-overlay);
 }
 
+.app-shell > main {
+    min-height: 0;
+}
+
 .icon-sm { width: 24px; height: 24px; filter: opacity(0.8); }
-.icon-tb { width: 26px; height: 26px; }
-.icon-xs { width: 18px; height: 18px; margin: 0 5px; opacity: 0.7; }
+.icon-tb { width: 22px; height: 22px; }
+.icon-xs { width: 15px; height: 15px; opacity: 0.72; }
 
 .top-bar {
     height: 48px;
+    flex-shrink: 0;
     background: var(--glass-white);
     backdrop-filter: blur(8px);
     display: flex;
@@ -116,14 +122,22 @@ body {
 }
 
 .taskbar {
-    min-height: 60px;
-    background: var(--glass-strong);
+    min-height: 62px;
+    flex-shrink: 0;
+    margin-top: auto;
+    position: relative;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(238, 233, 255, 0.84)),
+        var(--glass-strong);
+    border-top: 1px solid rgba(255, 255, 255, 0.95);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    z-index: 2;
+    gap: 10px;
+    padding: 8px 14px;
+    z-index: 20;
 }
 
 .tb-left,
@@ -131,27 +145,94 @@ body {
 .tb-right {
     display: flex;
     align-items: center;
+    min-width: 0;
+}
+
+.tb-left,
+.tb-right {
+    flex: 1;
+    gap: 6px;
+}
+
+.tb-right {
+    justify-content: flex-end;
 }
 
 .tb-center {
+    gap: 6px;
     font-weight: bold;
+    white-space: nowrap;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.58);
+    border: 1px solid rgba(255, 255, 255, 0.85);
 }
 
 #tb-clock {
-    margin-left: 10px;
+    margin-left: 4px;
+    font-size: 0.9rem;
+    font-weight: 700;
     color: #3f3f79;
     letter-spacing: 0.5px;
 }
 
 .tb-left a,
 .tb-right a {
-    margin: 0 6px;
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.92);
     opacity: 0.85;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
 }
 
 .tb-left a:hover,
 .tb-right a:hover {
     opacity: 1;
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.72);
+    transform: translateY(-1px) scale(1.03);
+}
+
+.tb-left a:active,
+.tb-right a:active {
+    transform: translateY(0) scale(0.98);
+}
+
+@media (max-width: 760px) {
+    .taskbar {
+        min-height: 58px;
+        padding: 6px 8px;
+        gap: 6px;
+    }
+
+    .tb-left,
+    .tb-right {
+        gap: 4px;
+    }
+
+    .tb-left a,
+    .tb-right a {
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+    }
+
+    .tb-center {
+        padding: 5px 8px;
+        gap: 4px;
+    }
+
+    .tb-center .icon-xs {
+        display: none;
+    }
+
+    #tb-clock {
+        margin-left: 0;
+        font-size: 0.82rem;
+    }
 }
