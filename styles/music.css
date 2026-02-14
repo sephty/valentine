@@ -1,44 +1,61 @@
 /* Top Bar Controller */
+/* Container for the logo and the sliding pill */
 .music-mini-controls {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.4);
     border-radius: 30px;
-    padding: 4px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(8px);
+    padding: 4px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
     position: relative;
-    z-index: 50;
+    height: 38px; /* Slightly taller for a bigger pill */
 }
 
 .spotify-logo {
-    width: 28px;
-    height: 28px;
+    width: 32px; /* Larger logo */
+    height: 32px;
     cursor: pointer;
-    z-index: 2;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    position: relative;
+    z-index: 10;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    transition: transform 0.3s ease;
 }
 
 .song-info-pill {
     background: linear-gradient(90deg, #6f2d87, #9d65e9);
     color: white;
-    height: 22px;
+    height: 28px; /* Taller pill */
     display: flex;
     align-items: center;
-    border-radius: 0 12px 12px 0;
-    margin-left: -14px; /* Hide behind logo */
-    padding-left: 20px;
-    padding-right: 12px;
-    font-size: 0.7rem;
+    
+    /* ROUNDED ON ALL SIDES */
+    border-radius: 20px; 
+    
+    /* Pulls the rounded left edge slightly behind the logo center */
+    margin-left: -16px; 
+    
+    /* Adds more space so the text doesn't hit the logo */
+    padding-left: 24px; 
+    padding-right: 16px;
+    
+    font-size: 0.8rem; /* Slightly larger font */
     font-weight: 700;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 0; /* Animated */
-    transition: max-width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    max-width: 0; 
+    opacity: 0;
+    transition: max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.3s ease;
+    z-index: 5;
+    box-shadow: 0 2px 8px rgba(111, 45, 135, 0.3); /* Adds some depth */
 }
 
+/* When active */
 .song-info-pill.is-visible {
-    max-width: 140px;
+    max-width: 200px; /* Room for longer titles */
+    opacity: 1;
 }
 
 .music-btns {
@@ -52,93 +69,6 @@
     border: none;
     color: #6f2d87;
     cursor: pointer;
-    font-size: 1rem;
-    transition: transform 0.2s;
-}
-
-.music-btns button:hover { transform: scale(1.2); }
-
-/* The Spotify-ish Popup */
-.music-popup-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(31, 18, 43, 0.5);
-    backdrop-filter: blur(10px);
-    display: grid;
-    place-items: center;
-    z-index: 1000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-}
-
-.music-popup-overlay.is-open {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.spotify-card {
-    background: #181818; /* Spotify Dark */
-    width: min(340px, 90vw);
-    border-radius: 24px;
-    padding: 30px;
-    text-align: center;
-    color: white;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.album-art {
-    width: 220px;
-    height: 220px;
-    margin: 0 auto 20px;
-    background: linear-gradient(135deg, #f176ac, #9d65e9);
-    border-radius: 15px;
-    display: grid;
-    place-items: center;
-    font-size: 4rem;
-}
-
-.progress-container {
-    width: 100%;
-    height: 5px;
-    background: #3e3e3e;
-    border-radius: 10px;
-    margin: 25px 0 8px;
-    cursor: pointer;
-}
-
-.progress-bar {
-    height: 100%;
-    background: #1DB954; /* Spotify Green */
-    border-radius: 10px;
-    width: 0%;
-    position: relative;
-}
-
-.progress-bar::after {
-    content: '';
-    position: absolute;
-    right: -5px;
-    top: -4px;
-    width: 12px;
-    height: 12px;
-    background: white;
-    border-radius: 50%;
-}
-
-.time-stamps {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    color: #b3b3b3;
-}
-
-.close-music {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    margin-top: 20px;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
 }
