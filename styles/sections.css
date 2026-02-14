@@ -54,7 +54,9 @@
     border-radius: 7px;
     border: 8px solid #f8f8ff;
     background-color: #f8f8ff; 
-    background-image: linear-gradient(120deg, rgba(255, 255, 255, 0.95), rgba(230, 225, 255, 0.9));
+    background-image: linear-gradient(120deg, rgba(255, 255, 255, 0.4), rgba(230, 225, 255, 0.3));
+    background-size: cover;
+    background-position: center;
     box-shadow: 0 10px 20px rgba(55, 41, 89, 0.26);
     display: flex;
     align-items: flex-end;
