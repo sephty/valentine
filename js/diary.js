@@ -111,20 +111,20 @@ const diaryEntries = [
         
         `You are such a blessing to me, honey. I truly thank God for you. For your heart, your softness, your strength, and the way you care for people so naturally and with such light. The way you work so hard, giving them your time and patience… it says so much about who you are. You have such a gentle spirit. It’s so beautiful to see.`,
         
-        `Even with the temporary distance between us, the little things mean everything. Those silly games we’ve played, from Roblox to even Heartopia, the long calls that somehow turn into hours, the random laughs, the comfortable silence… those moments will always stay with me. They make the distance feel smaller. They make my heart feel close to yours.`,
+        `Even with the temporary distance between us, the little things mean everything. Those silly games we’ve played, from Roblox to even Heartopia! the long calls that somehow turn into hours, the random laughs, the comfortable silence… those moments will always stay with me. They make the distance feel smaller. They make my heart feel close to yours.`,
         
         `I love how many things we share in common, and how our dreams match so perfectly. I love hearing you talk about baking and the way you get excited about it. It’s so cute, and it’s so you! Everything you do, you do with such care and sweetness, and that’s one of the many reasons I admire you.`,
         
         `There’s even a verse that reminds me of you: “Every good and perfect gift is from above.” — James 1:17
         
-        And that’s exactly how I see you. A gift I didn’t expect, but one I’m deeply grateful for. So happy Valentine’s Day, my sweet and beautiful girl. Even from far away, you still give me butterflies, and I’m so thankful that out of all the people in the world and even the universe, I get to love you. ❤️`
+        And that’s exactly how I see you. A gift I didn’t expect, but one I’m deeply grateful for. So happy Valentine’s Day, mi hermosa y preciosa futura esposa. Even from far away, you still give me so many butterflies, and I’m so so thankful that out of all the people in the world and even the universe, I get to love you. ❤️`
         ]
         
     },
     {
         title: 'Date nights!',
         body: [
-            `There's still so many things I want to do with you. I really loved our little date nights. The aquarium one, our Heartopia hangouts, even watching the meteor shower together! that was so cool! Moments like that make me realize how special this is. I loved being there with you, even through a screen, and I want to experience so much more with you.`,
+            `There's still so many things I want to do with you. I really loved our little date nights. The aquarium one, when we discovered heartopiaaa, even watching the meteor shower together there! that was so cool! Moments like that make me realize how special this is. I loved being there with you, even through a screen, and I want to experience so much more with you.`,
 
             `I can't wait for more silly, cozy nights. Streaming while I cook for you muehehe, more virtual dates, more random ideas we come up with at midnight. And when we finally meet... oh, I want to do everything. Star gazing under the sky, picnics, cooking together, baking together (yippeeeeee), drawing side by side, restaurant dates, theme park dates, aquarium dates! just living those little moments together. There's so much I want to experience with you, and the best part is that I want to experience it all with you.` 
 
@@ -141,17 +141,17 @@ const diaryEntries = [
     {
         title: 'Little things I love about Her',
         body: [
-            `• Your sincerity. The way you mean what you say and feel things so genuinely.
-                • Your kindness. It’s not loud or showy, it’s just naturally part of you.
-                • How hardworking you are. You give your best, especially with the kids you care for.
-                • The effort you put into us. Into our calls, our time, our little dates.
-                • Your softness and patience.
-                • The way you get excited about baking and the little things.
-                • Your faith and the light you carry.
-                • The way you make me feel safe, heard, and loved.
-                • Your laugh. Yes, that too.
-                • And the way you somehow make my heart feel full even from miles away.` 
-        ],
+    '• Your sincerity. The way you mean what you say and feel things so genuinely.',
+    '• Your kindness. It’s not loud or showy, it’s just naturally part of you.',
+    '• How hardworking you are. You give your best, especially with the kids you care for.',
+    '• The effort you put into us. Into our calls, our time, our little dates.',
+    '• Your softness and patience.',
+    '• The way you get excited about baking and the little things.',
+    '• Your faith and the light you carry.',
+    '• The way you make me feel safe, heard, and loved.',
+    '• Your laugh. Yes, that too.',
+    '• And the way you somehow make my heart feel full even from miles away.'
+],
         photos: [
             { src: 'imgs/besos.gif', caption: 'soft mood', tilt: '3deg' },
             { src: 'imgs/cute_drawing_shedid.jpg', caption: 'cute frame', tilt: '-2deg' }
