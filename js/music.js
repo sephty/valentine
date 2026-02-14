@@ -1,12 +1,18 @@
 // --- CONFIGURATION ---
+// --- CONFIGURATION ---
 const playlist = [
-    { title: "Aquarium Dreams", artist: "Candy", src: "imgs/music/aquarium.mp3" },
-    { title: "Night Watching", artist: "Sweetheart", src: "imgs/music/night.mp3" },
-    { title: "Love Language", artist: "Honey", src: "imgs/music/love.mp3" }
-    // Add more here. It's just one line per song!
+    { title: "Sweet", artist: "Cigarettes After Sex", src: "imgs/music/Cigarettes After Sex - Sweet (SPOTISAVER).mp3" },
+    { title: "Hanae", artist: "Hanae", src: "imgs/music/Hanae(SPOTISAVER).mp3" },
+    { title: "The Flower Garden", artist: "Joe Hisaishi", src: "imgs/music/Joe Hisaishi - The Flower Garden (SPOTISAVER).mp3" },
+    { title: "Love You Anyway", artist: "The Marias", src: "imgs/music/The Marias - Love You Anyway (SPOTISAVER).mp3" },
+    { title: "Sienna", artist: "The Marias", src: "imgs/music/The Marias - Sienna (SPOTISAVER).mp3" },
+    { title: "soft", artist: "hanbee, woo!", src: "imgs/music/hanbee, woo! - soft (SPOTISAVER).mp3" },
+    { title: "love.", artist: "wave to earth", src: "imgs/music/wave to earth - love.(SPOTISAVER).mp3" },
+    { title: "blue", artist: "yung kai", src: "imgs/music/yung kai - blue (SPOTISAVER).mp3" }
 ];
 
 // --- STATE MANAGEMENT ---
+// These lines pull the saved data from the browser memory
 let songIndex = parseInt(localStorage.getItem('m_idx')) || 0;
 let isPlaying = localStorage.getItem('m_play') === 'true';
 let seekTime = parseFloat(localStorage.getItem('m_time')) || 0;
@@ -15,38 +21,42 @@ const audio = new Audio();
 audio.src = playlist[songIndex].src;
 audio.currentTime = seekTime;
 
-// Initialize
+// Initialize when page loads
 document.addEventListener('DOMContentLoaded', () => {
     initPlayer();
+    
+    // Resume playback if it was playing on the previous page
     if (isPlaying) {
-        // Most browsers block autoplay until a click happens
+        // We use a small delay because browsers often block audio until a user clicks
         const playAttempt = setInterval(() => {
             audio.play().then(() => {
                 clearInterval(playAttempt);
                 updatePlayIcons(true);
-            }).catch(() => { /* Waiting for user click */ });
+            }).catch(() => {
+                // If blocked, we wait for the first user click anywhere to resume
+                document.addEventListener('click', () => {
+                   if(isPlaying) audio.play();
+                   updatePlayIcons(isPlaying);
+                }, { once: true });
+            });
         }, 1000);
     }
 });
 
 function initPlayer() {
     const logo = document.getElementById('music-logo');
-    const pill = document.getElementById('song-pill');
     const playBtn = document.getElementById('play-btn');
     const nextBtn = document.getElementById('next-btn');
     const prevBtn = document.getElementById('prev-btn');
     const popup = document.getElementById('music-popup');
 
-    // Toggle Popup
     logo.onclick = () => popup.classList.toggle('is-open');
     document.getElementById('close-music').onclick = () => popup.classList.remove('is-open');
 
-    // Controls
     playBtn.onclick = togglePlay;
     nextBtn.onclick = () => changeSong(1);
     prevBtn.onclick = () => changeSong(-1);
 
-    // Progress Bar Logic
     const progContainer = document.querySelector('.progress-container');
     progContainer.onclick = (e) => {
         const percent = e.offsetX / progContainer.clientWidth;
@@ -54,7 +64,7 @@ function initPlayer() {
     };
 
     updateUI();
-    setInterval(syncState, 500);
+    setInterval(syncState, 500); // Saves current time every half second
 }
 
 function togglePlay() {
@@ -71,7 +81,6 @@ function togglePlay() {
 
 function changeSong(dir) {
     const pill = document.getElementById('song-pill');
-    // Slide In animation
     pill.classList.remove('is-visible');
     
     setTimeout(() => {
@@ -82,8 +91,11 @@ function changeSong(dir) {
         
         updateUI();
         pill.classList.add('is-visible');
+        
+        // SAVE the new song choice to memory
         localStorage.setItem('m_idx', songIndex);
-    }, 400); // Matches CSS transition
+        localStorage.setItem('m_time', 0);
+    }, 400);
 }
 
 function updateUI() {
@@ -95,15 +107,14 @@ function updateUI() {
 
 function updatePlayIcons(playing) {
     const btn = document.getElementById('play-btn');
-    const popBtn = document.getElementById('pop-play-btn'); // optional if you add one to popup
     btn.innerText = playing ? '⏸' : '▶';
 }
 
 function syncState() {
     if (!audio.paused) {
+        // SAVE the current seconds elapsed to memory
         localStorage.setItem('m_time', audio.currentTime);
         
-        // Update Popup Bars
         const bar = document.getElementById('music-progress');
         const currTxt = document.getElementById('time-curr');
         const totalTxt = document.getElementById('time-total');
