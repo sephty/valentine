@@ -56,8 +56,13 @@ function randomizeTileLayout() {
     const placed = [];
 
     photoTiles.forEach((tile, index) => {
-        const src = tile.dataset.src;
+        let src = tile.dataset.src;
+        
         if (src) {
+            if (!src.startsWith('imgs/')) {
+                src = 'imgs/' + src;
+            }
+            console.log("Loading image from:", src);
             tile.style.setProperty('--photo-image', `url('${src}')`);
         }
 
