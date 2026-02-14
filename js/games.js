@@ -122,16 +122,23 @@ if (canvas && ctx) {
         ctx.fill();
     }
 
-    function drawSkyDots() {
-        for (let i = 0; i < 35; i++) {
-            const x = (i * 73) % canvas.width;
-            const y = ((i * 47) % (canvas.height * 0.7));
-            ctx.fillStyle = 'rgba(255,255,255,0.35)';
-            ctx.beginPath();
-            ctx.arc(x, y, (i % 3) + 1, 0, Math.PI * 2);
-            ctx.fill();
-        }
+function drawSkyDots() {
+    // I increased the count to 45 to make the background look a bit more magical
+    for (let i = 0; i < 45; i++) {
+        // Pseudo-random math to keep stars in the same spot so they don't flicker
+        const x = (i * 137) % canvas.width;
+        const y = (i * 89) % (canvas.height * 0.8);
+        
+        // Vary the size slightly (between 2 and 4 pixels)
+        const outerRadius = (i % 3) + 2; 
+        const innerRadius = outerRadius * 0.45;
+        const spikes = 5;
+        const color = 'rgba(255, 255, 255, 0.35)'; // The same soft tiny color as the dots
+
+        // cx, cy, spikes, outerRadius, innerRadius, color
+        drawStar(x, y, spikes, outerRadius, innerRadius, color);
     }
+}
 
     function spawnStar() {
         if (Math.random() < 0.04) stars.push(new Star());
