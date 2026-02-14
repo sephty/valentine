@@ -105,9 +105,9 @@
     cursor: pointer;
     background-color: #fff;
     background-image: var(--photo-image) !important;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
     border: 8px solid #f8f8ff;
     overflow: hidden;
 }
