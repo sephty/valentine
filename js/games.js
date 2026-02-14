@@ -123,8 +123,8 @@ if (canvas && ctx) {
     }
 
 function drawSkyDots() {
-    // I increased the count to 45 to make the background look a bit more magical
-    for (let i = 0; i < 45; i++) {
+    // I increased the count to 55 to make the background look a bit more magical
+    for (let i = 0; i < 55; i++) {
         // Pseudo-random math to keep stars in the same spot so they don't flicker
         const x = (i * 137) % canvas.width;
         const y = (i * 89) % (canvas.height * 0.8);
