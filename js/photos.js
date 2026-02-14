@@ -59,46 +59,26 @@ function randomizeTileLayout() {
         let src = tile.dataset.src;
         
         if (src) {
-            if (!src.startsWith('imgs/')) {
+            // If the path doesn't already start with imgs/, add it
+            if (!src.startsWith('imgs/') && !src.startsWith('http')) {
                 src = 'imgs/' + src;
             }
-            console.log("Loading image from:", src);
+            // Apply the image directly to the element style
             tile.style.setProperty('--photo-image', `url('${src}')`);
+            tile.style.backgroundImage = `url('${src}')`; // Force it here too
         }
 
-        const tileWidth = tile.offsetWidth;
-        const tileHeight = tile.offsetHeight;
-
+        const tileWidth = tile.offsetWidth || 120;
+        const tileHeight = tile.offsetHeight || 150;
         const maxLeft = Math.max(margin, tableWidth - tileWidth - margin);
         const maxTop = Math.max(margin, tableHeight - tileHeight - margin);
 
-        let bestSpot = null;
-        for (let attempt = 0; attempt < 120; attempt++) {
-            const candidate = {
-                left: randomInRange(margin, maxLeft),
-                top: randomInRange(margin, maxTop),
-                width: tileWidth,
-                height: tileHeight
-            };
-
-            const hasHeavyOverlap = placed.some((box) => overlapRatio(candidate, box) > 0.24);
-            if (!hasHeavyOverlap) {
-                bestSpot = candidate;
-                break;
-            }
-        }
-
-        if (!bestSpot) {
-            const columns = Math.max(2, Math.floor(tableWidth / (tileWidth * 0.92)));
-            const col = index % columns;
-            const row = Math.floor(index / columns);
-            bestSpot = {
-                left: Math.min(maxLeft, margin + col * (tileWidth * 0.72)),
-                top: Math.min(maxTop, margin + row * (tileHeight * 0.72)),
-                width: tileWidth,
-                height: tileHeight
-            };
-        }
+        let bestSpot = {
+            left: randomInRange(margin, maxLeft),
+            top: randomInRange(margin, maxTop),
+            width: tileWidth,
+            height: tileHeight
+        };
 
         placed.push(bestSpot);
         tile.style.left = `${bestSpot.left}px`;
@@ -107,7 +87,6 @@ function randomizeTileLayout() {
         tile.style.zIndex = `${2 + index}`;
     });
 }
-
 function scheduleTileLayout() {
     if (tileLayoutFrame) {
         cancelAnimationFrame(tileLayoutFrame);
