@@ -56,26 +56,27 @@ function randomizeTileLayout() {
     const placed = [];
 
     photoTiles.forEach((tile, index) => {
+        // --- PATH FIX START ---
         let src = tile.dataset.src;
-        
         if (src) {
-            // Ensure the path starts with imgs/
             if (!src.startsWith('imgs/') && !src.startsWith('http')) {
                 src = 'imgs/' + src;
             }
-            // Set the background image directly on the element's style
-            // This bypasses the CSS file path logic
+            // Setting this directly fixes the /styles/imgs/ 404 error
             tile.style.backgroundImage = `url('${src}')`;
         }
+        // --- PATH FIX END ---
 
-        const tileWidth = tile.offsetWidth || 120;
-        const tileHeight = tile.offsetHeight || 150;
+        const tileWidth = tile.offsetWidth || 150;
+        const tileHeight = tile.offsetHeight || 180;
 
         const maxLeft = Math.max(margin, tableWidth - tileWidth - margin);
         const maxTop = Math.max(margin, tableHeight - tileHeight - margin);
 
         let bestSpot = null;
-        for (let attempt = 0; attempt < 50; attempt++) {
+
+        // Restore the collision detection loop (120 attempts)
+        for (let attempt = 0; attempt < 120; attempt++) {
             const candidate = {
                 left: randomInRange(margin, maxLeft),
                 top: randomInRange(margin, maxTop),
@@ -83,23 +84,31 @@ function randomizeTileLayout() {
                 height: tileHeight
             };
 
+            // Check if this spot overlaps too much with photos already placed
             const hasHeavyOverlap = placed.some((box) => overlapRatio(candidate, box) > 0.24);
+            
             if (!hasHeavyOverlap) {
                 bestSpot = candidate;
                 break;
             }
         }
 
+        // Fallback: If we couldn't find a perfect spot, use a simple grid-ish layout
         if (!bestSpot) {
+            const columns = Math.max(2, Math.floor(tableWidth / (tileWidth * 0.92)));
+            const col = index % columns;
+            const row = Math.floor(index / columns);
             bestSpot = {
-                left: randomInRange(margin, maxLeft),
-                top: randomInRange(margin, maxTop),
+                left: Math.min(maxLeft, margin + col * (tileWidth * 0.72)),
+                top: Math.min(maxTop, margin + row * (tileHeight * 0.72)),
                 width: tileWidth,
                 height: tileHeight
             };
         }
 
         placed.push(bestSpot);
+        
+        // Apply the positions
         tile.style.left = `${bestSpot.left}px`;
         tile.style.top = `${bestSpot.top}px`;
         tile.style.setProperty('--rot', `${Math.round(randomInRange(-12, 12))}deg`);
