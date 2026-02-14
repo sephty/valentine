@@ -50,6 +50,8 @@ function initPlayer() {
     const prevBtn = document.getElementById('prev-btn');
     const popup = document.getElementById('music-popup');
 
+    audio.onended = () => changeSong(1);
+
     logo.onclick = () => popup.classList.toggle('is-open');
     document.getElementById('close-music').onclick = () => popup.classList.remove('is-open');
 
