@@ -6,6 +6,7 @@
     <title>Menu | To my Candy</title>
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/menu.css">
+    <link rel="stylesheet" href="styles/music.css">
 </head>
 <body>
     <div id="white-overlay"></div>
@@ -16,7 +17,17 @@
                 <img src="imgs/profile-circle-svgrepo-com.svg" class="icon-sm" alt="user">
             </div>
             <div class="status-center">
-                <div class="pink-battery"></div>
+                <div class="music-mini-controls">
+                    <img src="imgs/spotify.png" class="spotify-logo" id="music-logo">
+                    <div class="song-info-pill is-visible" id="song-pill">
+                        <span id="pill-text">Loading...</span>
+                    </div>
+                    <div class="music-btns">
+                        <button id="prev-btn">⏮</button>
+                        <button id="play-btn">▶</button>
+                        <button id="next-btn">⏭</button>
+                    </div>
+                </div>
             </div>
             <div class="status-right">
                 <span id="date-display">Wed, February 11, 2026</span>
@@ -70,6 +81,26 @@
             </div>
         </footer>
     </div>
+    
+    <div id="music-popup" class="music-popup-overlay">
+        <div class="spotify-card">
+            <div class="album-art">🎵</div>
+            <h2 id="pop-title">Song Title</h2>
+            <p id="pop-artist">Artist Name</p>
+    
+            <div class="progress-container">
+                <div class="progress-bar" id="music-progress"></div>
+            </div>
+            <div class="time-stamps">
+                <span id="time-curr">0:00</span>
+                <span id="time-total">0:00</span>
+            </div>
+            
+            <button class="close-music" id="close-music">×</button>
+        </div>
+    </div>
+
+    <script src="js/music.js"></script>
 
     <script src="js/index.js"></script>
 </body>
