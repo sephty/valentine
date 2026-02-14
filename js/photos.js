@@ -59,26 +59,45 @@ function randomizeTileLayout() {
         let src = tile.dataset.src;
         
         if (src) {
-            // If the path doesn't already start with imgs/, add it
+            // Ensure the path starts with imgs/
             if (!src.startsWith('imgs/') && !src.startsWith('http')) {
                 src = 'imgs/' + src;
             }
-            // Apply the image directly to the element style
-            tile.style.setProperty('--photo-image', `url('${src}')`);
-            tile.style.backgroundImage = `url('${src}')`; // Force it here too
+            // Set the background image directly on the element's style
+            // This bypasses the CSS file path logic
+            tile.style.backgroundImage = `url('${src}')`;
         }
 
         const tileWidth = tile.offsetWidth || 120;
         const tileHeight = tile.offsetHeight || 150;
+
         const maxLeft = Math.max(margin, tableWidth - tileWidth - margin);
         const maxTop = Math.max(margin, tableHeight - tileHeight - margin);
 
-        let bestSpot = {
-            left: randomInRange(margin, maxLeft),
-            top: randomInRange(margin, maxTop),
-            width: tileWidth,
-            height: tileHeight
-        };
+        let bestSpot = null;
+        for (let attempt = 0; attempt < 50; attempt++) {
+            const candidate = {
+                left: randomInRange(margin, maxLeft),
+                top: randomInRange(margin, maxTop),
+                width: tileWidth,
+                height: tileHeight
+            };
+
+            const hasHeavyOverlap = placed.some((box) => overlapRatio(candidate, box) > 0.24);
+            if (!hasHeavyOverlap) {
+                bestSpot = candidate;
+                break;
+            }
+        }
+
+        if (!bestSpot) {
+            bestSpot = {
+                left: randomInRange(margin, maxLeft),
+                top: randomInRange(margin, maxTop),
+                width: tileWidth,
+                height: tileHeight
+            };
+        }
 
         placed.push(bestSpot);
         tile.style.left = `${bestSpot.left}px`;
